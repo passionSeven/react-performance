@@ -31,3 +31,19 @@ const FontAwesomeIcon = React.lazy(() =>
 #### [`onMouseEnter` vs `onMouseOver`](https://stackoverflow.com/questions/1638877/difference-between-onmouseover-and-onmouseenter)
 
 - `enter` doesn't fire again (bubble) when going into a child element
+
+### Webpack magic comments (prefetching)
+
+- [Webpack magic comments docs](https://webpack.js.org/api/module-methods/#magic-comments)
+
+```js
+import(/* webpackPrefetch: true */ './some-module.js')
+```
+
+- adds `rel="prefetch"` and `as="script"`
+
+```html
+<link rel="prefetch" as="script" href="/static/js/1.chunk.js" />
+```
+
+- does vite and snowpack have this too?
