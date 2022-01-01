@@ -37,7 +37,7 @@ function App() {
       <div style={{width: 400, height: 400}}>
         {showGlobe ? (
           <React.Suspense fallback={<p>Hello!</p>}>
-            <Globe />{' '}
+            <Globe />
           </React.Suspense>
         ) : null}
       </div>
