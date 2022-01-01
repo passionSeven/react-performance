@@ -21,3 +21,13 @@ const FontAwesomeIcon = React.lazy(() =>
   })),
 )
 ```
+
+### How to make Lazy loading more Eager?
+
+- loading when the user hovers over
+  - onMouseEnter
+  - onFocus (keyboard!)
+
+#### [`onMouseEnter` vs `onMouseOver`](https://stackoverflow.com/questions/1638877/difference-between-onmouseover-and-onmouseenter)
+
+- `enter` doesn't fire again (bubble) when going into a child element
