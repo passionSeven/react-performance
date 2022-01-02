@@ -46,4 +46,15 @@ import(/* webpackPrefetch: true */ './some-module.js')
 <link rel="prefetch" as="script" href="/static/js/1.chunk.js" />
 ```
 
-- does vite and snowpack have this too?
+- `webpackChunkName`: put common modules together in the same chunk
+  - less of an optimization now that we have multiplexing in HTTP2+
+
+#### Does vite and snowpack have this too?
+
+## useMemo
+
+```jsx
+const distance = React.useMemo(() => calculateDistance(x, y), [x, y])
+```
+
+- for memoizing 
