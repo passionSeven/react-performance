@@ -65,9 +65,6 @@ const distance = React.useMemo(() => calculateDistance(x, y), [x, y])
 - accepts a `comparator(prevProps, newProps)`
    - return `true`: memoize
    - `false`: don't memoize (aka re-render)
-   - you do `!==`, even for objects!!
-   - no premature optimization!
+   - avoid premature optimization!
      - makes the code way more complex
-
-- ideally, React will memoize for us if we pass only primitives as props
--
+- React will memoize for us if we pass only primitives as props

@@ -58,7 +58,7 @@ function ListItem({
 ListItem = React.memo(ListItem)
 // function onlyRerenderChangedHighlights(prevProps, nextProps) {
 //   if (
-//     // object: how come we're allowed to use !== for an object?
+//     // getItemProps is a useCallbacked (memoized) function so it only changes when the dep list changes
 //     prevProps.getItemProps !== nextProps.getItemProps ||
 //     prevProps.item !== nextProps.item ||
 //     prevProps.index !== nextProps.index ||
