@@ -21,8 +21,8 @@ function Menu({
           getItemProps={getItemProps}
           item={item}
           index={index}
-          selectedItem={selectedItem}
-          highlightedIndex={highlightedIndex}
+          isSelected={selectedItem?.id === item.id}
+          isHighlighted={highlightedIndex === index}
         >
           {item.name}
         </ListItem>
@@ -36,12 +36,10 @@ function ListItem({
   getItemProps,
   item,
   index,
-  selectedItem,
-  highlightedIndex,
+  isSelected,
+  isHighlighted,
   ...props
 }) {
-  const isSelected = selectedItem?.id === item.id
-  const isHighlighted = highlightedIndex === index
   return (
     <li
       {...getItemProps({
@@ -57,26 +55,7 @@ function ListItem({
   )
 }
 
-ListItem = React.memo(
-  ListItem,
-  function onlyRerenderChangedHighlights(prevProps, nextProps) {
-    if (
-      // object: how come we're allowed to use !== for an object?
-      prevProps.getItemProps !== nextProps.getItemProps ||
-      prevProps.item !== nextProps.item ||
-      prevProps.index !== nextProps.index ||
-      prevProps.selectedItem !== nextProps.selectedItem
-    ) {
-      return false
-    }
-    if (prevProps.highlightedIndex !== nextProps.highlightedIndex) {
-      const wasHighlighted = prevProps.highlightedIndex === prevProps.index
-      const willBeHighlighted = nextProps.highlightedIndex === nextProps.index
-      return wasHighlighted === willBeHighlighted
-    }
-    return true
-  },
-)
+ListItem = React.memo(ListItem)
 
 function App() {
   const forceRerender = useForceRerender()
