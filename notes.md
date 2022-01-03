@@ -57,7 +57,17 @@ import(/* webpackPrefetch: true */ './some-module.js')
 const distance = React.useMemo(() => calculateDistance(x, y), [x, y])
 ```
 
-- for memoizing
+- for memoizing values
 
+## React.useMemo
 
+- only re-renders when the props change
+- accepts a `comparator(prevProps, newProps)`
+   - return `true`: memoize
+   - `false`: don't memoize (aka re-render)
+   - you do `!==`, even for objects!!
+   - no premature optimization!
+     - makes the code way more complex
 
+- ideally, React will memoize for us if we pass only primitives as props
+-

@@ -32,7 +32,7 @@ function Menu({
 }
 Menu = React.memo(Menu)
 
-const ListItem = React.memo(function ListItem({
+function ListItem({
   getItemProps,
   item,
   index,
@@ -55,7 +55,28 @@ const ListItem = React.memo(function ListItem({
       })}
     />
   )
-})
+}
+
+ListItem = React.memo(
+  ListItem,
+  function onlyRerenderChangedHighlights(prevProps, nextProps) {
+    if (
+      // object: how come we're allowed to use !== for an object?
+      prevProps.getItemProps !== nextProps.getItemProps ||
+      prevProps.item !== nextProps.item ||
+      prevProps.index !== nextProps.index ||
+      prevProps.selectedItem !== nextProps.selectedItem
+    ) {
+      return false
+    }
+    if (prevProps.highlightedIndex !== nextProps.highlightedIndex) {
+      const wasHighlighted = prevProps.highlightedIndex === prevProps.index
+      const willBeHighlighted = nextProps.highlightedIndex === nextProps.index
+      return wasHighlighted === willBeHighlighted
+    }
+    return true
+  },
+)
 
 function App() {
   const forceRerender = useForceRerender()
