@@ -72,7 +72,7 @@ const distance = React.useMemo(() => calculateDistance(x, y), [x, y])
 ## Windowing with `react-virtual`
 
 ```js
-const listRef = React.useRef()  // the <ul> ref
+const listRef = React.useRef()  // the <ul> **ref**
 const rowVirtualizer = useVirtual({
   size: items.length,
   parentRef: listRef,
@@ -85,3 +85,8 @@ const rowVirtualizer = useVirtual({
 - container is `position: relative`
 - virtual rows are `position: absolute`
   - then there's a `transform: translate` property so it's performant
+
+
+## Optimize Context Value
+
+-

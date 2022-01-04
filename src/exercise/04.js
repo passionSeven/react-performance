@@ -78,7 +78,7 @@ function ListItem({
         style: {
           backgroundColor: isHighlighted ? 'lightgray' : 'inherit',
           fontWeight: isSelected ? 'bold' : 'normal',
-          // 🐨 spread the incoming styles onto this inline style object
+          ...style,
         },
         ...props,
       })}
@@ -123,17 +123,9 @@ function App() {
           : 'Selection Cleared',
       ),
     itemToString: item => (item ? item.name : ''),
-    onHighlightedIndexChange: changes => {
-      rowVirtualizer.scrollToIndex(changes.highlightedIndex)
-    },
     scrollIntoView: () => {},
-    // we want to override Downshift's scrollIntoView functionality because
-    // react-virtual will handle scrolling for us:
-    // 🐨 set scrollIntoView to a "no-op" function
-    // 💰 scrollIntoView: () => {},
-    // 🐨 when the highlightedIndex changes, then tell react-virtual to scroll
-    // to that index.
-    // 💰 onHighlightedIndexChange: ({highlightedIndex}) => highlightedIndex !== -1 && rowVirtualizer.scrollToIndex(highlightedIndex),
+    onHighlightedIndexChange: ({highlightedIndex}) =>
+      highlightedIndex !== -1 && rowVirtualizer.scrollToIndex(highlightedIndex),
   })
 
   return (
