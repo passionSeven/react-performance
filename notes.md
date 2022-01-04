@@ -1,6 +1,6 @@
 ## Code Splitting
 
-- import() is promisable
+- import() returns a **promise**
 
 ```js
 import('/some-module.js').then(
@@ -49,7 +49,7 @@ import(/* webpackPrefetch: true */ './some-module.js')
 - `webpackChunkName`: put common modules together in the same chunk
   - less of an optimization now that we have multiplexing in HTTP2+
 
-#### Does vite and snowpack have this too?
+#### Does vite, snowpack or parcel have this too?
 
 ## useMemo
 
@@ -72,11 +72,16 @@ const distance = React.useMemo(() => calculateDistance(x, y), [x, y])
 ## Windowing with `react-virtual`
 
 ```js
-const listRef = React.useRef()
+const listRef = React.useRef()  // the <ul> ref
 const rowVirtualizer = useVirtual({
   size: items.length,
   parentRef: listRef,
-  estimateSize: React.useCallback(() => 20, []),
+  estimateSize: React.useCallback(() => 20, []),  // 20px
   overscan: 10,
 })
 ```
+
+### Styling when windowing
+- container is `position: relative`
+- virtual rows are `position: absolute`
+  - then there's a `transform: translate` property so it's performant
