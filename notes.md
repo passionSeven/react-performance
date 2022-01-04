@@ -63,8 +63,20 @@ const distance = React.useMemo(() => calculateDistance(x, y), [x, y])
 
 - only re-renders when the props change
 - accepts a `comparator(prevProps, newProps)`
-   - return `true`: memoize
-   - `false`: don't memoize (aka re-render)
-   - avoid premature optimization!
-     - makes the code way more complex
+  - return `true`: memoize
+  - `false`: don't memoize (aka re-render)
+  - avoid premature optimization!
+    - makes the code way more complex
 - React will memoize for us if we pass only primitives as props
+
+## Windowing with `react-virtual`
+
+```js
+const listRef = React.useRef()
+const rowVirtualizer = useVirtual({
+  size: items.length,
+  parentRef: listRef,
+  estimateSize: React.useCallback(() => 20, []),
+  overscan: 10,
+})
+```

@@ -2,8 +2,7 @@
 // http://localhost:3000/isolated/exercise/04.js
 
 import * as React from 'react'
-// 🐨 import the useVirtual hook from react-virtual
-// import {useVirtual} from 'react-virtual'
+import {useVirtual} from 'react-virtual'
 import {useCombobox} from '../use-combobox'
 import {getItems} from '../workerized-filter-cities'
 import {useAsync, useForceRerender} from '../utils'
